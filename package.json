@@ -20,7 +20,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "avon": "^3.0.0",
     "bitcoinjs-lib": "^5.1.6",
     "blakejs": "^1.1.0",
     "bn.js": "^5.0.0",

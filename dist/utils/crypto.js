@@ -4,16 +4,10 @@ const isNode = typeof process !== 'undefined' &&
     process.versions != null &&
     process.versions.node != null;
 const toBuffer = require('to-buffer');
+const blake = require('blakejs');
 class Blaker {
     static blake2b(input) {
-        if (isNode) {
-            const avon = require('avon');
-            return avon.sumBuffer(toBuffer(input), avon.ALGORITHMS.B).toString('hex');
-        }
-        else {
-            const blake = require('blakejs');
-            return blake.blake2bHex(input);
-        }
+        return blake.blake2bHex(input);
     }
 }
 /**
