@@ -1,4 +1,5 @@
-import { default as nodeFetch } from 'node-fetch';
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
 
 import * as core from './protos/core_pb';
 import * as bc from './protos/bc_pb';
@@ -134,21 +135,18 @@ export default class RpcClient {
 
         let res
         try {
-          console.log(`${this.rpcUrl.origin}/rpc`, rpcBody)
-            res = await nodeFetch(`${this.rpcUrl.origin}/rpc`, {
+            res = await fetch(`${this.rpcUrl.origin}/rpc`, {
                 method: 'post',
                 body: JSON.stringify(rpcBody),
                 headers: this.defaultHeaders
             })
         } catch (e) {
-          console.error(e)
             return {
                 code: -1,
                 message: e.toString()
             }
         }
 
-        console.error(res)
         if (res.status !== 200) {
             return {
                 code: res.status,
