@@ -80,6 +80,7 @@ class RpcClient {
             };
             let res;
             try {
+                console.log(`${this.rpcUrl.origin}/rpc`, rpcBody);
                 res = yield node_fetch_1.default(`${this.rpcUrl.origin}/rpc`, {
                     method: 'post',
                     body: JSON.stringify(rpcBody),
@@ -87,11 +88,13 @@ class RpcClient {
                 });
             }
             catch (e) {
+                console.error(e);
                 return {
                     code: -1,
                     message: e.toString()
                 };
             }
+            console.error(res);
             if (res.status !== 200) {
                 return {
                     code: res.status,

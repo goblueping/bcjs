@@ -36,6 +36,7 @@ export default class Wallet {
         req.setAddress(address)
 
         let a = await this.rpcClient.getWallet(req)
+        console.log('aaaaaaaaa', a)
         return a.spendableOutpointsList
     }
 

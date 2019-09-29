@@ -32,6 +32,7 @@ class Wallet {
             const req = new bc.GetBalanceRequest();
             req.setAddress(address);
             let a = yield this.rpcClient.getWallet(req);
+            console.log('aaaaaaaaa', a);
             return a.spendableOutpointsList;
         });
     }

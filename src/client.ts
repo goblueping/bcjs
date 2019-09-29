@@ -134,18 +134,21 @@ export default class RpcClient {
 
         let res
         try {
+          console.log(`${this.rpcUrl.origin}/rpc`, rpcBody)
             res = await fetch(`${this.rpcUrl.origin}/rpc`, {
                 method: 'post',
                 body: JSON.stringify(rpcBody),
                 headers: this.defaultHeaders
             })
         } catch (e) {
+          console.error(e)
             return {
                 code: -1,
                 message: e.toString()
             }
         }
 
+        console.error(res)
         if (res.status !== 200) {
             return {
                 code: res.status,
